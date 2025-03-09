@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>__FILENAME__ - Benny Capp</title>
+    <meta name="description" content="File shared by Benny Capp Photography">
+    <link rel="icon" href="https://dropshare.app/favicon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300..800&display=swap" rel="stylesheet" />
+    
+    <meta name="generator" content="Dropshare http://dropshare.app" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:image" content="__PREVIEWURL__" />
+    <meta property="twitter:title" content="__FILENAME__" />
+    <meta property="twitter:description" content="__FILENAME__ - shared with Dropshare" />
+    <meta property="og:title" content="__FILENAME__ - Benny Capp" />
+    <meta property="og:description" content="File shared by Benny Capp Photography" />
+    <meta property="og:image" content="__PREVIEWURL__" />
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    width: {
+                        'sidebar': '300px'
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+        
+        .bg-fade {
+            transition: opacity 0.8s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden">
+    <!-- Main layout using grid -->
+    <div class="grid md:grid-cols-[300px_1fr] grid-rows-[auto_1fr] md:grid-rows-1 min-h-screen">
+        <!-- Left white column / Top on mobile -->
+        <div class="bg-white md:h-screen row-start-1 md:col-start-1 md:row-span-1">
+            <!-- Logo -->
+            <div class="p-6 pt-12 md:pt-16 flex justify-center">
+                <a href="https://www.bencapp.com/" aria-label="Visit Benny Capp's website">
+                    <img src="https://images.squarespace-cdn.com/content/v1/559b31fae4b0d04728024aa8/1590547108482-TGTOITEEF0V4WWG0ATO2/bc_sticker_20mm_circle.png"
+                         alt="Benny Capp Logo"
+                         class="size-24 md:size-32 rounded-full">
+                </a>
+            </div>
+            
+            <!-- File information -->
+            <div class="p-6 pt-0 md:pt-6 flex flex-col items-center">
+                <div class="text-black mb-6 text-center">
+                    <p>Ben Capp has sent you something</p>
+                </div>
+                <h1 class="text-xl font-bold mb-4">__FILENAME__</h1>
+                <div class="space-y-3 text-sm text-gray-600 text-center">
+                    <p>Size: __FILESIZE__</p>
+                    <p>Uploaded: __SHAREDATE__</p>
+                    <div class="mt-6">
+                        <a href="__PATH__"
+                           download="__FILENAME__"
+                           class="inline-block rounded bg-black text-white text-center py-3 px-6 hover:bg-gray-800 transition-colors mt-6">
+                            Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right content area with background image / Bottom on mobile -->
+        <div class="row-start-2 md:col-start-2 md:row-start-1 min-h-[40vh] md:h-screen">
+            <!-- Content with border -->
+            <div class="p-6 md:pl-0 relative h-full">
+                <!-- Background containers -->
+                <div id="bg-container-1" class="absolute top-6 md:top-8 left-6 md:left-0 bottom-6 md:bottom-8 right-6 md:right-8 bg-cover bg-center transition-opacity duration-1000 opacity-100"></div>
+                <div id="bg-container-2" class="absolute top-6 md:top-8 left-6 md:left-0 bottom-6 md:bottom-8 right-6 md:right-8 bg-cover bg-center transition-opacity duration-1000 opacity-0"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Define background images
+        const backgroundImages = [
+            'https://images.squarespace-cdn.com/content/v1/559b31fae4b0d04728024aa8/1627353067147-PBWM2W35YWWD4QRAWXUH/Griggs_Comb.jpg',
+            'https://images.squarespace-cdn.com/content/v1/559b31fae4b0d04728024aa8/1616644178166-PCI495TEBQ8XX9EOT0K9/MARTY-MANCA---Set-Dresser-and-Buyer-for-Film-%26-TV.jpg?format=2500w',
+            'https://images.squarespace-cdn.com/content/v1/559b31fae4b0d04728024aa8/1736137615820-VJG2265BDQGL34K3BQ61/Bodriggy_5.jpg',
+            'https://images.squarespace-cdn.com/content/v1/559b31fae4b0d04728024aa8/1736122337662-HQQ7XM3CD37O70SMRJXF/Badiucao_4.jpg'
+        ];
+        
+        // Shuffle the array to get random order
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+        
+        // Create a shuffled copy of the images array
+        const shuffledImages = shuffleArray([...backgroundImages]);
+        
+        // Preload all images immediately
+        backgroundImages.forEach(url => {
+            const img = new Image();
+            img.src = url;
+        });
+        
+        let currentContainer = 1;
+        let nextContainer = 2;
+        let imageIndex = 0;
+
+        // Set initial background images with the first two from shuffled array
+        document.getElementById('bg-container-1').style.backgroundImage = `url(${shuffledImages[0]})`;
+        document.getElementById('bg-container-2').style.backgroundImage = `url(${shuffledImages[1]})`;
+        imageIndex = 2; // Next image will be the third in the shuffled array
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start the background rotation
+            setInterval(changeBackground, 8000);
+        });
+
+        function changeBackground() {
+            // Background change
+            const current = document.getElementById(`bg-container-${currentContainer}`);
+            const next = document.getElementById(`bg-container-${nextContainer}`);
+            
+            // Get next image from shuffled array
+            if (imageIndex >= shuffledImages.length) {
+                // Reshuffle when we've used all images
+                shuffleArray(shuffledImages);
+                imageIndex = 0;
+            }
+            
+            const nextImage = shuffledImages[imageIndex++];
+            
+            // Set the new image on the hidden container
+            next.style.backgroundImage = `url(${nextImage})`;
+            
+            // Fade out current, fade in next
+            current.classList.add('opacity-0');
+            next.classList.remove('opacity-0');
+            
+            // Swap containers for next time
+            [currentContainer, nextContainer] = [nextContainer, currentContainer];
+        }
+    </script>
+</body>
+</html>
