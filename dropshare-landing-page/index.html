@@ -24,9 +24,6 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    width: {
-                        'sidebar': '300px'
-                    },
                     fontFamily: {
                         sans: ['Nunito', 'sans-serif'],
                     }
@@ -34,58 +31,47 @@
             }
         }
     </script>
-    
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-        }
-        
-        .bg-fade {
-            transition: opacity 0.8s ease-in-out;
-        }
-    </style>
+
 </head>
-<body class="min-h-screen overflow-x-hidden">
+<body class="min-h-screen overflow-x-hidden text-nunito">
     <!-- Main layout using grid -->
-    <div class="grid md:grid-cols-[300px_1fr] grid-rows-[auto_1fr] md:grid-rows-1 min-h-screen">
-        <!-- Left white column / Top on mobile -->
-        <div class="bg-white md:h-screen row-start-1 md:col-start-1 md:row-span-1">
-            <!-- Logo -->
-            <div class="p-6 pt-12 md:pt-16 flex justify-center">
+    <div class="grid grid-cols-1 min-h-screen relative">
+        <!-- Background containers with border -->
+        <div id="bg-container-1" class="absolute inset-6 md:inset-8 bg-cover bg-center transition-opacity duration-1000 opacity-100"></div>
+        <div id="bg-container-2" class="absolute inset-6 md:inset-8 bg-cover bg-center transition-opacity duration-1000 opacity-0"></div>
+        
+        <!-- Content layout -->
+        <div class="relative z-10 grid grid-cols-1 grid-rows-[auto_1fr_auto] min-h-screen p-6 md:p-10">
+            <!-- Top section with logo -->
+            <div class="p-6 md:p-8">
                 <a href="https://www.bencapp.com/" aria-label="Visit Benny Capp's website">
                     <img src="https://images.squarespace-cdn.com/content/v1/559b31fae4b0d04728024aa8/1590547108482-TGTOITEEF0V4WWG0ATO2/bc_sticker_20mm_circle.png"
                          alt="Benny Capp Logo"
-                         class="size-24 md:size-32 rounded-full">
+                         class="size-16 md:size-32 rounded-full">
                 </a>
             </div>
             
-            <!-- File information -->
-            <div class="p-6 pt-0 md:pt-6 flex flex-col items-center">
-                <div class="text-black mb-6 text-center">
-                    <p>Ben Capp has sent you something</p>
-                </div>
-                <h1 class="text-xl font-bold mb-4">__FILENAME__</h1>
-                <div class="space-y-3 text-sm text-gray-600 text-center">
-                    <p>Size: __FILESIZE__</p>
-                    <p>Uploaded: __SHAREDATE__</p>
-                    <div class="mt-6">
-                        <a href="__PATH__"
-                           download="__FILENAME__"
-                           class="inline-block rounded bg-black text-white text-center py-3 px-6 hover:bg-gray-800 transition-colors mt-6">
-                            Download
-                        </a>
+            <!-- Middle section (empty) -->
+            <div></div>
+            
+            <!-- Bottom section with content box -->
+            <div class="p-6 md:p-10 flex">
+                <div class="bg-white rounded p-6 md:min-w-96 md:max-w-md w-full">
+                    <div class="text-black mb-4 text-center">
+                        <p>Ben Capp has sent you something</p>
+                    </div>
+                    <h1 class="text-xl font-bold mb-4 text-center">__FILENAME__</h1>
+                    <div class="space-y-2 text-sm text-gray-600 text-center">
+                        <p>Uploaded: __SHAREDATE__</p>
+                        <div class="pt-4 flex justify-center">
+                            <a href="__PATH__"
+                               download="__FILENAME__"
+                               class="inline-block rounded bg-black text-white text-center py-3 px-6 hover:bg-gray-800 transition-colors">
+                                Download (__FILESIZE__)
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Right content area with background image / Bottom on mobile -->
-        <div class="row-start-2 md:col-start-2 md:row-start-1 min-h-[40vh] md:h-screen">
-            <!-- Content with border -->
-            <div class="p-6 md:pl-0 relative h-full">
-                <!-- Background containers -->
-                <div id="bg-container-1" class="absolute top-6 md:top-8 left-6 md:left-0 bottom-6 md:bottom-8 right-6 md:right-8 bg-cover bg-center transition-opacity duration-1000 opacity-100"></div>
-                <div id="bg-container-2" class="absolute top-6 md:top-8 left-6 md:left-0 bottom-6 md:bottom-8 right-6 md:right-8 bg-cover bg-center transition-opacity duration-1000 opacity-0"></div>
             </div>
         </div>
     </div>
@@ -99,18 +85,6 @@
             'https://images.squarespace-cdn.com/content/v1/559b31fae4b0d04728024aa8/1736122337662-HQQ7XM3CD37O70SMRJXF/Badiucao_4.jpg'
         ];
         
-        // Shuffle the array to get random order
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-        
-        // Create a shuffled copy of the images array
-        const shuffledImages = shuffleArray([...backgroundImages]);
-        
         // Preload all images immediately
         backgroundImages.forEach(url => {
             const img = new Image();
@@ -119,16 +93,31 @@
         
         let currentContainer = 1;
         let nextContainer = 2;
-        let imageIndex = 0;
+        let lastIndex = -1;
 
-        // Set initial background images with the first two from shuffled array
-        document.getElementById('bg-container-1').style.backgroundImage = `url(${shuffledImages[0]})`;
-        document.getElementById('bg-container-2').style.backgroundImage = `url(${shuffledImages[1]})`;
-        imageIndex = 2; // Next image will be the third in the shuffled array
+        // Function to get a random image index different from the last one
+        function getRandomImageIndex() {
+            if (backgroundImages.length <= 1) return 0;
+            
+            let index;
+            do {
+                index = Math.floor(Math.random() * backgroundImages.length);
+            } while (index === lastIndex);
+            
+            lastIndex = index;
+            return index;
+        }
+
+        // Set initial background images with random selections
+        const firstIndex = getRandomImageIndex();
+        document.getElementById('bg-container-1').style.backgroundImage = `url(${backgroundImages[firstIndex]})`;
+        
+        const secondIndex = getRandomImageIndex();
+        document.getElementById('bg-container-2').style.backgroundImage = `url(${backgroundImages[secondIndex]})`;
 
         document.addEventListener('DOMContentLoaded', function() {
             // Start the background rotation
-            setInterval(changeBackground, 8000);
+            setInterval(changeBackground, 5000);
         });
 
         function changeBackground() {
@@ -136,17 +125,12 @@
             const current = document.getElementById(`bg-container-${currentContainer}`);
             const next = document.getElementById(`bg-container-${nextContainer}`);
             
-            // Get next image from shuffled array
-            if (imageIndex >= shuffledImages.length) {
-                // Reshuffle when we've used all images
-                shuffleArray(shuffledImages);
-                imageIndex = 0;
-            }
-            
-            const nextImage = shuffledImages[imageIndex++];
+            // Get a random image index different from the last one
+            const randomIndex = getRandomImageIndex();
+            const randomImage = backgroundImages[randomIndex];
             
             // Set the new image on the hidden container
-            next.style.backgroundImage = `url(${nextImage})`;
+            next.style.backgroundImage = `url(${randomImage})`;
             
             // Fade out current, fade in next
             current.classList.add('opacity-0');
