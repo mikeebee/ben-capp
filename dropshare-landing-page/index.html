@@ -36,9 +36,8 @@
 <body class="min-h-screen overflow-x-hidden text-nunito">
     <!-- Main layout using grid -->
     <div class="grid grid-cols-1 min-h-screen relative">
-        <!-- Background containers with border -->
-        <div id="bg-container-1" class="absolute inset-6 md:inset-8 bg-cover bg-center transition-opacity duration-1000 opacity-100"></div>
-        <div id="bg-container-2" class="absolute inset-6 md:inset-8 bg-cover bg-center transition-opacity duration-1000 opacity-0"></div>
+        <!-- Background container with border -->
+        <div id="bg-container" class="absolute inset-6 md:inset-8 bg-cover bg-center"></div>
         
         <!-- Content layout -->
         <div class="relative z-10 grid grid-cols-1 grid-rows-[auto_1fr_auto] min-h-screen p-6 md:p-10">
@@ -66,7 +65,7 @@
                         <div class="pt-4 flex justify-center">
                             <a href="__PATH__"
                                download="__FILENAME__"
-                               class="inline-block rounded bg-black text-white text-center py-3 px-6 hover:bg-gray-800 transition-colors">
+                               class="inline-block rounded bg-black text-white text-center py-3 px-6 hover:bg-gray-600 transition-colors">
                                 Download (__FILESIZE__)
                             </a>
                         </div>
@@ -85,60 +84,17 @@
             'https://images.squarespace-cdn.com/content/v1/559b31fae4b0d04728024aa8/1736122337662-HQQ7XM3CD37O70SMRJXF/Badiucao_4.jpg'
         ];
         
-        // Preload all images immediately
-        backgroundImages.forEach(url => {
-            const img = new Image();
-            img.src = url;
-        });
-        
-        let currentContainer = 1;
-        let nextContainer = 2;
-        let lastIndex = -1;
-
-        // Function to get a random image index different from the last one
-        function getRandomImageIndex() {
-            if (backgroundImages.length <= 1) return 0;
-            
-            let index;
-            do {
-                index = Math.floor(Math.random() * backgroundImages.length);
-            } while (index === lastIndex);
-            
-            lastIndex = index;
-            return index;
+        // Function to get a random image
+        function getRandomImage() {
+            const randomIndex = Math.floor(Math.random() * backgroundImages.length);
+            return backgroundImages[randomIndex];
         }
 
-        // Set initial background images with random selections
-        const firstIndex = getRandomImageIndex();
-        document.getElementById('bg-container-1').style.backgroundImage = `url(${backgroundImages[firstIndex]})`;
-        
-        const secondIndex = getRandomImageIndex();
-        document.getElementById('bg-container-2').style.backgroundImage = `url(${backgroundImages[secondIndex]})`;
-
+        // Set random background image on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Start the background rotation
-            setInterval(changeBackground, 5000);
+            const randomImage = getRandomImage();
+            document.getElementById('bg-container').style.backgroundImage = `url(${randomImage})`;
         });
-
-        function changeBackground() {
-            // Background change
-            const current = document.getElementById(`bg-container-${currentContainer}`);
-            const next = document.getElementById(`bg-container-${nextContainer}`);
-            
-            // Get a random image index different from the last one
-            const randomIndex = getRandomImageIndex();
-            const randomImage = backgroundImages[randomIndex];
-            
-            // Set the new image on the hidden container
-            next.style.backgroundImage = `url(${randomImage})`;
-            
-            // Fade out current, fade in next
-            current.classList.add('opacity-0');
-            next.classList.remove('opacity-0');
-            
-            // Swap containers for next time
-            [currentContainer, nextContainer] = [nextContainer, currentContainer];
-        }
     </script>
 </body>
 </html>
