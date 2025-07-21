@@ -1,112 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>__FILENAME__ - Benny Capp</title>
-    <meta name="description" content="File shared by Benny Capp Photography">
+    <meta name="description" content="File shared by Benny Capp Photography" />
     <link rel="icon" href="https://dropshare.app/favicon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300..800&display=swap" rel="stylesheet" />
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300..800&display=swap"
+      rel="stylesheet"
+    />
+
     <meta name="generator" content="Dropshare http://dropshare.app" />
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:image" content="__PREVIEWURL__" />
     <meta property="twitter:title" content="__FILENAME__" />
-    <meta property="twitter:description" content="__FILENAME__ - shared with Dropshare" />
+    <meta
+      property="twitter:description"
+      content="__FILENAME__ - shared with Dropshare"
+    />
     <meta property="og:title" content="__FILENAME__ - Benny Capp" />
-    <meta property="og:description" content="File shared by Benny Capp Photography" />
+    <meta
+      property="og:description"
+      content="File shared by Benny Capp Photography"
+    />
     <meta property="og:image" content="__PREVIEWURL__" />
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Nunito', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
 
-</head>
-<body class="min-h-screen overflow-x-hidden text-nunito">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Nunito", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-screen overflow-x-hidden text-nunito">
     <!-- Main layout using grid -->
     <div class="grid grid-cols-1 min-h-screen relative">
-        <!-- Background container with border -->
-        <div id="bg-container" class="absolute inset-6 md:inset-8 bg-cover bg-center"></div>
-        
-        <!-- Content layout -->
-        <div class="relative z-10 grid grid-cols-1 grid-rows-[auto_1fr_auto] min-h-screen p-6 md:p-10">
-            <!-- Top section with logo -->
-            <div class="p-6 md:p-8">
-                <a href="https://www.bencapp.com/" aria-label="Visit Benny Capp's website">
-                    <img src="https://images.squarespace-cdn.com/content/v1/559b31fae4b0d04728024aa8/1590547108482-TGTOITEEF0V4WWG0ATO2/bc_sticker_20mm_circle.png"
-                         alt="Benny Capp Logo"
-                         class="size-16 md:size-32 rounded-full">
-                </a>
-            </div>
-            
-            <!-- Middle section (empty) -->
-            <div></div>
-            
-            <!-- Bottom section with content box -->
-            <div class="p-6 md:p-10 flex">
-                <div class="bg-white rounded p-6 md:min-w-96 md:max-w-md w-full">
-                    <div class="text-black mb-4 text-center">
-                        <p>Ben Capp has sent you something</p>
-                    </div>
-                    <h1 class="text-xl font-bold mb-4 text-center">__FILENAME__</h1>
-                    <div class="space-y-2 text-sm text-gray-600 text-center">
-                        <p>Uploaded: __SHAREDATE__</p>
-                        <div class="pt-4 flex justify-center">
-                            <a href="__PATH__"
-                               download="__FILENAME__"
-                               class="inline-block rounded bg-black text-white text-center py-3 px-6 hover:bg-gray-600 transition-colors">
-                                Download (__FILESIZE__)
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <!-- Background container with border -->
+      <div
+        id="bg-container"
+        class="absolute inset-6 md:inset-8 bg-cover bg-center"
+      ></div>
+
+      <!-- Content layout -->
+      <div
+        class="relative z-10 grid grid-cols-1 grid-rows-[auto_1fr_auto] min-h-screen p-6 md:p-10"
+      >
+        <!-- Top section with logo -->
+        <div class="p-6 md:p-8">
+          <a
+            href="https://www.bencapp.com/"
+            aria-label="Visit Benny Capp's website"
+          >
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/559b31fae4b0d04728024aa8/1590547108482-TGTOITEEF0V4WWG0ATO2/bc_sticker_20mm_circle.png"
+              alt="Benny Capp Logo"
+              class="size-16 md:size-32 rounded-full"
+            />
+          </a>
         </div>
+
+        <!-- Middle section (empty) -->
+        <div></div>
+
+        <!-- Bottom section with content box -->
+        <div class="p-6 md:p-10 flex">
+          <div class="bg-white rounded p-6 md:min-w-96 md:max-w-md w-full">
+            <div class="text-black mb-4 text-center">
+              <p>Ben Capp has sent you something</p>
+            </div>
+            <h1 class="text-xl font-bold mb-4 text-center">__FILENAME__</h1>
+            <div class="space-y-2 text-sm text-gray-600 text-center">
+              <p>Uploaded: __SHAREDATE__</p>
+              <div class="pt-4 flex justify-center">
+                <a
+                  href="__PATH__"
+                  download="__FILENAME__"
+                  class="inline-block rounded bg-black text-white text-center py-3 px-6 hover:bg-gray-600 transition-colors"
+                >
+                  Download (__FILESIZE__)
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-        // Define background images
-        const backgroundImages = [
-            'https://files.bencapp.com/file/bcdownloads/20231218_Uncle_Jason7277_uwNn0/20231218_Uncle_Jason7277.jpg',
-            'https://files.bencapp.com/file/bcdownloads/24.07.11_Tommy_Little_264-1_b%26w.jpg',
-            'https://files.bencapp.com/file/bcdownloads/24.07_xEi5O/24.07.11_Tommy_Little_264_1_b_w.jpg',
-            'https://files.bencapp.com/file/bcdownloads/250225_Front_Bar_3_Mick_540_colour_0T8Zw/250225_Front_Bar_3_Mick_540_colour.jpg',
-            'https://files.bencapp.com/file/bcdownloads/ACF_Shoe_NpNoT/ACF_Shoe.jpg',
-            'https://files.bencapp.com/file/bcdownloads/BIG_4_SUPERMARKET_Pc71U/BIG_4_SUPERMARKET.jpg',
-            'https://files.bencapp.com/file/bcdownloads/Big4_3_VhO3e/Big4_3.jpg',
-            'https://files.bencapp.com/file/bcdownloads/DA_Fisherman_Carlos_rwUrN/DA_Fisherman_Carlos.jpg',
-            'https://files.bencapp.com/file/bcdownloads/DA_Gardner_Soma_JP9Q8/DA_Gardner_Soma.jpg',
-            'https://files.bencapp.com/file/bcdownloads/FRANCIS_Zmhar/FRANCIS.jpg',
-            'https://files.bencapp.com/file/bcdownloads/MARTY_HERO_15G6b/MARTY_HERO.jpg',
-            'https://files.bencapp.com/file/bcdownloads/ON_PLANT_BENNYCAPP_PLANT_CONSUMPTION_MIGUEL_5YHLq/ON_PLANT_BENNYCAPP_PLANT_CONSUMPTION_MIGUEL.jpg',
-            'https://files.bencapp.com/file/bcdownloads/ROMY_HERO_YV4bB/ROMY_HERO.jpg',
-            'https://files.bencapp.com/file/bcdownloads/Repco_1_DhKKe/Repco_1.jpg',
-            'https://files.bencapp.com/file/bcdownloads/TA_Pool_A.jpg',
-            'https://files.bencapp.com/file/bcdownloads/TA_BBQ_A.jpg'
-        ];
-        
-        // Function to get a random image
-        function getRandomImage() {
-            const randomIndex = Math.floor(Math.random() * backgroundImages.length);
-            return backgroundImages[randomIndex];
-        }
+      // Define background images
+      const backgroundImages = [
+        "https://files.bencapp.com/file/bcdownloads/bennycappdownloads_1_YBLac/bennycappdownloads_1.jpg",
+        "https://files.bencapp.com/file/bcdownloads/bennycappdownloads_2_2jpat/bennycappdownloads_2.jpg",
+        "https://files.bencapp.com/file/bcdownloads/bennycappdownloads_3_MzEcn/bennycappdownloads_3.jpg",
+        "https://files.bencapp.com/file/bcdownloads/bennycappdownloads_4_BURtE/bennycappdownloads_4.jpg",
+        "https://files.bencapp.com/file/bcdownloads/bennycappdownloads_5_WUruy/bennycappdownloads_5.jpg",
+        "https://files.bencapp.com/file/bcdownloads/bennycappdownloads_6_xkvx4/bennycappdownloads_6.jpg",
+        "https://files.bencapp.com/file/bcdownloads/bennycappdownloads_7_CJTSc/bennycappdownloads_7.jpg",
+        "https://files.bencapp.com/file/bcdownloads/bennycappdownloads_8_dhg9E/bennycappdownloads_8.jpg",
+        "https://files.bencapp.com/file/bcdownloads/bennycappdownloads_9_asORH/bennycappdownloads_9.jpg",
+        "https://files.bencapp.com/file/bcdownloads/bennycappdownloads_10_lxg1Y/bennycappdownloads_10.jpg",
+        "https://files.bencapp.com/file/bcdownloads/bennycappdownloads_11_lOtRT/bennycappdownloads_11.jpg",
+        "https://files.bencapp.com/file/bcdownloads/bennycappdownloads_12_RNt37/bennycappdownloads_12.jpg",
+        "https://files.bencapp.com/file/bcdownloads/bennycappdownloads_13_sN4ax/bennycappdownloads_13.jpg",
+        "https://files.bencapp.com/file/bcdownloads/bennycappdownloads_14_CrfLB/bennycappdownloads_14.jpg",
+      ];
 
-        // Set random background image on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const randomImage = getRandomImage();
-            document.getElementById('bg-container').style.backgroundImage = `url(${randomImage})`;
-        });
+      // Function to get a random image
+      function getRandomImage() {
+        const randomIndex = Math.floor(Math.random() * backgroundImages.length);
+        return backgroundImages[randomIndex];
+      }
+
+      // Set random background image on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        const randomImage = getRandomImage();
+        document.getElementById(
+          "bg-container"
+        ).style.backgroundImage = `url(${randomImage})`;
+      });
     </script>
-</body>
+  </body>
 </html>
